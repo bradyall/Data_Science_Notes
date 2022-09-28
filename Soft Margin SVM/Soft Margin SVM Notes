@@ -1,0 +1,36 @@
+How to tell if overfitting in SVM:
+
+if the # of SV / # samples > ~10 percent, it should be a signal that you are overfitting
+
+Hard Margin is an SVM where none of the samples violate the margin
+Soft Margin, which is the default in most packages, allows for violations
+
+We are going to measure the slack with epsilon (e)
+
+The total slack will be the sum of ei
+
+In or SVM derivation, we said that we want to minimize ||w||, which for ease of quadratic programming, we transformed to
+min 1/2||w||**2.
+For Soft margin SVM, we say that we want to min 1/2||w||**2 + c*sum(ei)
+
+What is c? c is where we decide how important slack is. We get to set it ourselves.
+The more we raise c, the lower e needs to be when minimizing, i.e. how important e needs to be. This keeps us from over-
+fitting our data. In SVM, often datasets are frequently not lineraly seperable.
+
+See http://cvxopt.org/userguide/coneprog.html#quadratic-programming for cvxopt documentation. This is particularly
+helpful for understanding the variables
+
+
+
+
+How to use SVM with multiple classes?
+
+One versus Rest (OVR): generally the default
+you separate one class against the rest and repeat for all classes
+this can be a little challenging because you will almost certainly have more data on one side of the margin every time
+you split the data.
+
+One versus One (OVO):
+you separate one class from another, ignoring all non-relevant classes and repeat for all permuations.
+For a new point, it decides that the point is on one side of 1 vers 2, so it could be a 2 or 3, but then it is on the 3 side
+of the 2 v 3 hyperplane, so it must be a 3

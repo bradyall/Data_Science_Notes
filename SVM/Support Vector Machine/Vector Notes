@@ -1,0 +1,75 @@
+A vector has magnitude and direction.
+Direction is the way its pointing. If its from the origin it points directly away from the origin
+
+Maginitude is the norm or the euclidean distance
+
+A = [3,4]
+
+maginitude of A is sqrt((plot1[0]-plot0[0])**2+...+(plot1[n]-plot0[n])**2)
+
+Dot product -- multiplies the corresponding constituent parts of vectors and adds the results together to get a number
+
+plot0[0]*plot1[0]+...+plot0[n]*plot1[n]
+
+
+Suporrt Vector Machine works by creating a hyperplane that is the greatest maginitude between the closest points of each
+class
+
+To classify new points, SVM calculates the norm of the origin to the hyperplane, and then calculates the norm of the new
+point from the origin and projects it onto the hyperplane norm. If its greater its on the right, and smaller on the left
+
+The equation for SVM:
+
+vector U dot vector W (the norm to the hyperplane) + some sort of bias, b
+
+    if >= 0 then U is a +
+    if <= 0 then U is a -
+    if = 0 then U is on decision boundary
+
+We know U (aka the Xis of each class, written below as Xsubscript(+/- class)), but we dont know W or b.
+However, we do know that
+Xsubscript(- class) dot W + b = -1
+Xsubscript(+ class) dot W + b = 1
+
+Yi is the class of the features we are passing through, i.e. either a negative class or positive class. So
+Yi(+ class) = 1 = Xsubscript(+ class) dot W + b
+Yi(- class) = -1 = Xsubscript(- class) dot W + b
+
+If you multiply both sides by Yi and set it = to 0, you get:
+Yi(Xi*W+b)-1 = 0
+Yi(Xi*W+b)-1 = 0
+
+
+Why is it called "Support" Vector? the support vectors are feature set of each yi in a class, and the
+hyperplane is in the spot that maximizes the distance between the closest support vectors in each class.
+So the point where the hyperplane is going to be is the width between the closest two points / 2
+
+Width = (xi (+ class) - xi (- class)) dot (w/norm(w))
+
+Because we know what the two xis are equal to from above, this simplifies down to :
+width = 2/norm(w)
+We want to maximize width, so we'd want to minimize norm(w) because its on the bottom.
+
+To make it easier, we say
+
+min: 1/2*norm(w)**2 with respect to our constraint: Yi(Xi*W+b)-1 = 0
+
+So the Lagrangian is:
+min w, max b
+L(w,b) = 1/2*norm(w)**2-sum(ai(Yi(Xi*W+b)-1)
+
+dL/dw = w = sum(ai*Yi*xi)
+dL/db = sum(ai*Yi) = 0
+
+L = Sumi(ai)-1/2(sumij(ai*aj*Yi*Yj dot (Xi dot Xj)
+
+So the optimization objectives are min norm(w) and max b given the constraint
+
+SVM optimization problems are convex, so they have a global minimum and you wont get stuck in a
+local min.
+
+Basically what we will do is start at the top testing a w. If it works, we find the
+largest b and then test all of the w's possible alternatives (i.e. neg pos). After that we will
+step down the w vector with big steps until we start to go up again, then we will
+reverse direction and take smaller steps, repeating this process until we reach the global
+min

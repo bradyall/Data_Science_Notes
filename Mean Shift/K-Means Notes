@@ -1,0 +1,7 @@
+Mean shift
+
+Mean shift works by setting all points in dataset as a cluster and defining a radius around that point.
+If another point falls within that radius, the algorithm then finds the mean of the points and sets another radius.
+This process repeats until the clusters converge.
+
+Mean shift can also set outer radii with small weights, which can provide a hierarchical formation to the data

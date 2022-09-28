@@ -1,0 +1,25 @@
+Clustering Introduction
+
+Flat Clustering
+
+You tell the machine how many clusters there should be
+
+Hierarchical Clustering
+
+Machine Decides How many clusters
+
+K-Means
+
+K is number of groups, input by user
+
+take entire dataset and set random centriods (center of clusters), and calc distance of each featureset to each centriod
+Then you find which are closest to which centriods. You can pick whatever centriods you want. It doesnt matter
+
+Then you calculate the mean of all of the featuresets that are closest to each centriod, and label that the new centriod
+Then repeat until the centriods are no longer moving, there will be some sort of tolerance and max iteration
+
+The adherence to Euclidean distance is the main issue with K-Means because it doesnt do a good job of clustering into
+difference sized clusters
+ 
+
+

@@ -1,0 +1,42 @@
+Neural Networks
+
+Modeled after what we theorize is the biological way the brain works
+
+Brain:
+Has dendrites that accept inputs, send them to the nucleus, if the nucleus decides to, it will send and output to the
+axon terminal, through the axons, and across the synaptic gap to the dendrite of another neuron.
+
+How a neuron works:
+We feed the dendrites input values:
+
+x1---values are weighted (w1)----|
+x2---values are weighted (w2)----|-->---values are summed together-->-fed to nucleus --->---
+x3---values are weighted (w3)----|
+
+
+-->--nucleus either fires (1) or doesnt (0)-->--fed to another neuron's dendrites-->--repeat for however many layers-->
+
+->--output
+
+The nucleus is modeled by some function, sometimes binary, but more often some sigmoid function (an S shape that doesnt
+go back on itself, sort of like x**3)
+
+The output Y is simply a function of xs and ws: Y = f(x*w)
+
+How a neural network works:
+Basic model:
+we feed each input and their weights to a each nucleus in hidden layer 1, and then each neuron feeds those inputs with
+another unique weight to each neuron in hidden layer n, which feeds each input and its unique weight to each output,
+which produces an output, generally binary values
+
+Neural Network v Deep Neural Network:
+more than one hidden layer makes it deep
+
+Why did it take so long for this to become popular?
+In SVM we were solving a quadratic optimization problem, which has a unique solution. But in neural networks, each line
+(connection) represents its own optimization problem. To solve it, you need a lot of data and a lot of processing power
+
+Neural Nets are so impressive because they can model logic on their own given a few hundred million attempts. Because
+of the number of variables though, it makes it tough for us as researchers to model what is actually happening within
+the network
+

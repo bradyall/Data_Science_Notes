@@ -1,0 +1,38 @@
+The biggest downfall of SVM is that training the model takes a really long time, also what if there is no linear split
+that we could make?
+
+We could increase the dimensions of the data by, say, multiplying x1 by x2. But this increases the data size by 50%,
+which means that something like SVM is going to be even more cumbersome on processing power. So the solution:
+
+KERNELS
+
+inner product = dot product
+Dot product returns a scalar, so we can replace one scalar by another
+
+Kernels can help solve this problem by creating a transformation of X onto Z. We can do this by taking the dot product,
+which is a similarity measure. In SVM, we are allowed to do this since every time we used X in equations, we were
+taking the dot product, so we could replace it with z
+
+x' = x prime     x'2 = x prime 2 (a.k.a x2 prime)
+
+K(x,x') = z.z'
+z = function(x)
+z' = function(x')
+
+Function must be the same in both z and z'
+
+The Question is, since z.z' is going to product a scalar, can we find out that scalar without having to actually visit
+that dimension?
+
+
+X = [x1,x2]   X' = [x1',x2']      Z = [1,x1,x2,x1**2,x2**2,x1x2]    Z' = [1,x1',x2',x1'**2,x2'**2,x1'x'2]
+
+K(x,x') = z.z' = 1+x1x'1+x2x'2+x1**2x'1**2+x2**2x'2**2+x1x'1x2x'2
+
+Can we do this without having to write this all out? Yes. We use the polynomial kernel:
+
+K(x,x') = (1+x.x')**p where p is the dimension
+
+Radio Basis Function -- This is the default kernel that most python libraries use to linearly separate data in almost
+any dimension
+K(x,x') = exp(-gamma*abs(x-x')**2)       exp(x) = e**x
